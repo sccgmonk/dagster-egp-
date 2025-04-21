@@ -1,0 +1,78 @@
+services:
+  webserver:
+    container_name: dagster_webserver
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint:
+      - dagster-webserver
+      - -h
+      - "0.0.0.0"
+      - -p
+      - "3000"
+      - -w
+      - workspace.yaml
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - code_location
+    develop:
+      watch:
+        - path: dagster.yaml
+          action: rebuild
+  daemon:
+    container_name: dagster_daemon
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint:
+      - dagster-daemon
+      - run
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  code_location:
+    container_name: dagster_code_location
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - '4000:4000'
+    develop:
+      watch:
+        - path: pyproject.toml
+          action: rebuild
+        - path: dagster_pipelines
+          target: /opt/dagster/app/dagster_pipelines
+          action: sync
+        - path: dagster.yaml
+          action: rebuild
+        - path: workspace.yaml
+          action: rebuild
+        - path: Dockerfile
+          action: rebuild
+    volumes:
+      - ./dagster_pipelines:/opt/dagster/app/dagster_pipelines
+      - ./storage:/opt/dagster/app/storage/
+      - ./dagster_pipelines/db/:/opt/dagster/app/dagster_pipelines/db/
+  
+  db:
+    container_name: dagster_db
+    image: postgres:16.4
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

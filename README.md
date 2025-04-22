@@ -1,6 +1,4 @@
-# Dagster Data Engineering Test
 
-Follow the below instructions to complete this test.
 
 ## Requirements
 - Python 3.12 or higher
@@ -10,15 +8,6 @@ Follow the below instructions to complete this test.
   - via CLI: [Installation Guide](https://duckdb.org/docs/installation/?version=stable&environment=cli&platform=macos&download_method=package_manager)  
   - recommended via IDE: [DBeaver Guide](https://duckdb.org/docs/stable/guides/sql_editors/dbeaver.html)  
 
-## Getting Started
-
-**Fork** the GitHub repository and name it `<Firstname>-dagster-de-test-2025`:
-- Go to [https://github.com/sidataplus/dagster-de-test-2025](https://github.com/sidataplus/dagster-de-test-2025)
-- Click the **Fork** button at the top-right to create a copy of this repository under your GitHub account
-- Then **Clone** the forked project to your local machine:
-```bash
-git clone https://github.com/sidataplus/dagster-de-test-2025.git
-cd dagster-de-test-2025
 ```
 
 via Docker:

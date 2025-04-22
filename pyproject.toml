@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dagster-pipelines"
+version = "0.0.1"
+requires-python = ">=3.12"
+dependencies = [
+    "dagster",
+    "dagster-cloud",
+    "dagster-webserver",
+    "dagster-postgres",
+    "dagster-graphql",
+    "dagster-pipes",
+    "dagster-pandas",
+    "dagster-sling",
+    "dagster-dlt",
+    "sling>1.4.0",
+    "sling-linux-amd64",
+    "dlt[filesystem]",
+    "dlt[duckdb]",
+    "dlt[postgres]",
+    "dlt[mssql]",
+    "pydantic<2.9.0", # https://dagsterlabs.slack.com/archives/C04J8BRN9ST/p1725559237966589
+    "pyyaml", # https://dagsterlabs.slack.com/archives/C082K86U53Q/p1732735564080519
+    "pyOpenSSL",
+    "polars",
+    "openpyxl>=3.1.5",
+]
+
+[dependency-groups]
+dev = [
+    "click",
+    "pytest",
+    "ruff"
+]
+
+[tool.setuptools.packages.find]
+exclude = ["dagster_pipelines_tests"]
+[tool.dagster]
+module_name = "dagster_pipelines.definitions"
+code_location_name = "dagster_pipelines"

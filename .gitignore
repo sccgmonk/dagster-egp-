@@ -1,0 +1,9 @@
+# Python venv
+.venv
+
+# Python cache
+*.egg-info
+__pycache__
+
+# Exclude all gitkeep from ignore
+!*/.gitkeep

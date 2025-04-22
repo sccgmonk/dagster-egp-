@@ -1,0 +1,11 @@
+run_retries:
+  enabled: true
+  max_retries: 3
+
+storage:
+  postgres:
+    postgres_url:
+      env: PG_CONNECTION_STRING
+
+telemetry:
+  enabled: false

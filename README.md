@@ -7,6 +7,7 @@
 - DuckDB
   - via CLI: [Installation Guide](https://duckdb.org/docs/installation/?version=stable&environment=cli&platform=macos&download_method=package_manager)  
   - recommended via IDE: [DBeaver Guide](https://duckdb.org/docs/stable/guides/sql_editors/dbeaver.html)  
+-unzip file on folder data
 
 ```
 
